@@ -4,7 +4,9 @@ namespace App\Filament\Resources\Branches\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\ViewField;
 
 class BranchForm
 {
@@ -12,17 +14,42 @@ class BranchForm
     {
         return $schema
             ->components([
-                TextInput::make('nama')->required(),
-Textarea::make('alamat')->required()->columnSpanFull(),
-TextInput::make('telepon')->tel(),
-TextInput::make('latitude')
-    ->required()->numeric()
-    ->minValue(-90)->maxValue(90)
-    ->helperText('Contoh: -6.1754'),
-TextInput::make('longitude')
-    ->required()->numeric()
-    ->minValue(-180)->maxValue(180)
-    ->helperText('Contoh: 106.8272'),
+                TextInput::make('nama')
+                    ->label('Nama')
+                    ->required(),
+
+                Textarea::make('alamat')
+                    ->label('Alamat')
+                    ->required()
+                    ->columnSpanFull(),
+
+                TextInput::make('telepon')
+                    ->label('Telepon')
+                    ->tel(),
+
+                TextInput::make('latitude')
+                    ->label('Latitude')
+                    ->required()
+                    ->numeric(),
+                Select::make('jenis')
+    ->label('Jenis Cabang')
+    ->options([
+        'toko' => 'Toko',
+        'bengkel' => 'Bengkel',
+    ])
+    ->default('toko')
+    ->required(),
+
+                TextInput::make('longitude')
+                    ->label('Longitude')
+                    ->required()
+                    ->numeric(),
+
+                ViewField::make('map_picker')
+                    ->label('Pilih Lokasi pada Peta')
+                    ->view('filament.forms.components.branch-map')
+                    ->dehydrated(false)
+                    ->columnSpanFull(),
             ]);
     }
 }

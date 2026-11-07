@@ -9,7 +9,7 @@ class BranchMapController extends Controller
     public function index()
     {
         $branches = Branch::select(
-            'id', 'nama', 'alamat', 'telepon', 'latitude', 'longitude'
+            'id', 'nama', 'alamat', 'telepon', 'latitude', 'longitude', 'jenis'
         )->get();
 
         return view('peta', compact('branches'));
