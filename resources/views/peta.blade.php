@@ -641,19 +641,13 @@
 
         // Membuat item sidebar.
         const item = document.createElement('div');
-
         item.className = 'item-cabang';
-
         item.id = 'cabang-' + index;
 
         const nama = document.createElement('b');
-
         nama.textContent = branch.nama || 'Tanpa nama';
-
         const alamat = document.createElement('small');
-
         alamat.textContent = branch.alamat || '-';
-
         const jenis = document.createElement('small');
 
         jenis.textContent =
@@ -671,16 +665,11 @@
                     : '';
 
         const koordinat = document.createElement('small');
-
         koordinat.className = 'koordinat-cabang';
-
         koordinat.textContent =
             `${formatKoordinat(branch.latitude)}, ${formatKoordinat(branch.longitude)}`;
-
         const lokasi = document.createElement('small');
-
         lokasi.className = 'nama-lokasi-cabang';
-
         lokasi.textContent = 'Klik untuk melihat nama lokasi';
 
         item.append(
@@ -720,12 +709,9 @@
     }
 
     map.on('click', event => {
-
         if (cabangDipilihIndex === null) {
-
             statusPeta.textContent =
                 'Pilih pin atau nama cabang terlebih dahulu';
-
             return;
         }
 
@@ -736,20 +722,15 @@
     });
 
     const areaLayanan = L.polygon([
-
         [-6.20, 106.80],
         [-6.20, 106.85],
         [-6.15, 106.85],
         [-6.15, 106.80]
 
     ], {
-
         color: '#16a34a',
-
         fillColor: '#86efac',
-
         fillOpacity: 0.12,
-
         weight: 2
 
     }).addTo(map);
